@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+}
+
+li{
+    /* height: 10rem;
+    width: 10rem; */
+    list-style-type: none;
+}
+
+ol{
+    height: 10rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content:flex-start
+}
+
+.letra{
+    height: 5rem;
+    width: 5rem;
+}
+
+#calcular{
+    height: 5rem;
+    width: 5rem;
+    bottom: 0;
+    background-color: red;
+}
+
+img.imagen{
+    width: 10rem;
+    display: flex;
+}
+
