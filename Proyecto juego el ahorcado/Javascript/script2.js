@@ -24,10 +24,42 @@ let contadorVidasHtml = document.querySelector(".vidas")
 
 let contadorPuntuacionHtml = document.querySelector(".contador")
 
+let cronometroHtml = document.querySelector(".cronometro")
+
 const teclas = document.querySelectorAll(".letra")
+
+let cronometro = 59;
+
+let interval;
+
+function format(seconds){
+    if(seconds < 10){
+        return "0" + seconds;
+    }
+    return seconds;
+}
+
+function actualizarSegundos(){
+    let segundos = Math.floor(cronometro)
+
+    cronometroHtml.textContent = `00:${(segundos)}`
+}
+
+function empezar(){
+    interval = setInterval(() => {
+        cronometro--
+        actualizarSegundos()
+    }, 1000)
+}
+
+
+
+
 
 
 document.querySelector("#calcular").addEventListener("click", () => {
+
+    empezar();
 
     numeroPalabraElegida = Math.floor(Math.random()*palabraSecreta.length) 
 
@@ -43,7 +75,7 @@ document.querySelector("#calcular").addEventListener("click", () => {
 
     palabraElegidaLetras = palabraElegida.split("")
 
-    contadorVidasHtml.innetHTML = vidas;
+    contadorVidasHtml.innetHTML = vidas +"VIDAS";
 })
 
 
@@ -60,7 +92,7 @@ for (const letra of teclas){
             if(palabraElegidaLetras[j]===letra.innerHTML.toLowerCase()){
                 palabraConGuiones[j]=letra.innerHTML;
                 palabraConGuionesHtml.innerHTML=palabraConGuiones;
-                contadorPuntuacionHtml.innerHTML = ++contador;
+                contadorPuntuacionHtml.innerHTML = ++contador +"PUNTOS";
                 exito=1;
             }
             
