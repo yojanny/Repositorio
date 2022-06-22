@@ -26,6 +26,8 @@ let contadorPuntuacionHtml = document.querySelector(".contador")
 
 let cronometroHtml = document.querySelector(".cronometro")
 
+let ventanaEmergenteHtml = document.querySelector(".ventanaEmergente")
+
 const teclas = document.querySelectorAll(".letra")
 
 let cronometro = 59;
@@ -40,22 +42,22 @@ function format(seconds){
 }
 
 function actualizarSegundos(){
-    let segundos = Math.floor(cronometro)
+    let segundos = cronometro
 
-    cronometroHtml.textContent = `00:${(segundos)}`
+    cronometroHtml.textContent = `00:${(format(segundos))}`
+
+    if(cronometro===0){
+        clearInterval(interval)
+    }
+    perderPartida();
 }
 
 function empezar(){
     interval = setInterval(() => {
         cronometro--
         actualizarSegundos()
-    }, 1000)
+    }, 1000)    
 }
-
-
-
-
-
 
 document.querySelector("#calcular").addEventListener("click", () => {
 
@@ -98,8 +100,25 @@ for (const letra of teclas){
             
         }
 
-        if(exito===0){
+        if(exito===0 && vidas >0){
             contadorVidasHtml.innerHTML = --vidas;
-        }  
+        } 
+        
+        if(vidas===0){
+            perderVidas()
+        }     
     }) 
+}
+
+
+function perderPartida(){
+    if (cronometro <= 0){
+        ventanaEmergenteHtml.innerHTML = "¡Tu tiempo se ha terminado! Has perdido "
+    }
+}
+
+function perderVidas(){
+    if(vidas <= 0){
+        ventanaEmergenteHtml.innerHTML = "¡Fin del juego! Has superado los fallos permitidos"
+    }
 }
