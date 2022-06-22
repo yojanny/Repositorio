@@ -87,6 +87,8 @@ document.querySelector("#calcular").addEventListener("click", () => {
 
     palabraElegidaLetras = palabraElegida.split("")
 
+    ventanaEmergenteHtml.innerHTML =""
+    
     contadorVidasHtml.innerHTML = vidas +"VIDAS";
 
     contadorPuntuacionHtml.innerHTML = contador +"PUNTOS"
@@ -106,19 +108,28 @@ for (const letra of teclas){
             if(palabraElegidaLetras[j]===letra.innerHTML.toLowerCase()){
                 palabraConGuiones[j]=letra.innerHTML;
                 palabraConGuionesHtml.innerHTML=palabraConGuiones;
-                contadorPuntuacionHtml.innerHTML = ++contador +"PUNTOS";
+                
+                if(contador<palabraElegida.length){
+                    contadorPuntuacionHtml.innerHTML = ++contador +"PUNTOS";
+                }
                 exito=1;
             }  
         }
 
-        if(exito===0 && vidas >0){
+        if(exito===0 && vidas >0 && contador!=palabraElegida.length){
             contadorVidasHtml.innerHTML = --vidas;
             cambiarImagen();
-        } 
+        }
+        
+        else if (contador===palabraElegida.length){
+            ganarPartida()
+        }
         
         if(vidas===0){
             perderVidas()
-        }     
+        }
+        
+        
     }) 
 }
 
@@ -143,5 +154,11 @@ function perderVidas(){
         /* window.alert("¡Fin del juego! Has superado los fallos permitidos") */
         clearInterval(interval)
     }
+}
+
+function ganarPartida(){
+    ventanaEmergenteHtml.innerHTML = "¡Felicidades! ¡Has acertado la palabra";
+    clearInterval(interval)
+
 }
 
