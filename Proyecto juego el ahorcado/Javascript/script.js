@@ -29,6 +29,8 @@ for (let i=0; i<palabraElegida.length; i++){
     
 }
 
+console.log(input);
+
 
 /* const palabraElegidaGuiones = palabraElegida.replace("palabraSecreta" , "_")
 

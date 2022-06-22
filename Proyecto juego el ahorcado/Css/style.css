@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+}
+
+li{
+    /* height: 10rem;
+    width: 10rem; */
+    list-style-type: none;
+}
+
+ol{
+    height: 10rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content:flex-start
+}
+
+.letra{
+    height: 5rem;
+    width: 5rem;
+}
+
+#calcular{
+    height: 5rem;
+    width: 5rem;
+    bottom: 0;
+    background-color: red;
+}
+
+img.imagen{
+    width: 10rem;
+    display: flex;
+}
+
+div.ventanaEmergente{
+    border-radius: 2rem;
+    min-height: 20rem;
+    width: 30rem;
+    background-color: rgb(0, 136, 255);
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem;
+    
+}
+
