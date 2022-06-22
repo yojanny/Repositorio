@@ -1,43 +1,124 @@
 "use strict"
 
-const palabraSecreta = ["tomate", "Lechuga", "pepino", "casa", "perro", "caballo", "elefante", "dinamarca", "portugal", "cuba", "coche", "moto", "camion"]
+const palabraSecreta = ["tomate", "lechuga", "pepino", "casa", "perro", "caballo", "elefante", "dinamarca", "portugal", "cuba", "coche", "moto", "camion"]
+
+let numeroPalabraElegida;
+
+let palabraElegida;
+
+let palabraConGuiones;
+
+let letraElegida;
+
+let palabraElegidaLetras;
+
+let exito;
+
+let vidas = "6";
+
+let contador = 0;
+
+let palabraConGuionesHtml = document.querySelector(".guiones")
+
+let contadorVidasHtml = document.querySelector(".vidas")
+
+let contadorPuntuacionHtml = document.querySelector(".contador")
+
+let cronometroHtml = document.querySelector(".cronometro")
+
+let ventanaEmergenteHtml = document.querySelector(".ventanaEmergente")
+
+const teclas = document.querySelectorAll(".letra")
+
+let cronometro = 59;
+
+let interval;
+
+function format(seconds){
+    if(seconds < 10){
+        return "0" + seconds;
+    }
+    return seconds;
+}
+
+function actualizarSegundos(){
+    let segundos = cronometro
+
+    cronometroHtml.textContent = `00:${(format(segundos))}`
+
+    if(cronometro===0){
+        clearInterval(interval)
+    }
+    perderPartida();
+}
+
+function empezar(){
+    interval = setInterval(() => {
+        cronometro--
+        actualizarSegundos()
+    }, 1000)    
+}
 
 document.querySelector("#calcular").addEventListener("click", () => {
-  
+
+    empezar();
+
+    numeroPalabraElegida = Math.floor(Math.random()*palabraSecreta.length) 
+
+    palabraElegida = palabraSecreta [numeroPalabraElegida]
+
+    console.log(palabraElegida);
+
+    palabraConGuiones = palabraElegida.replace(/./g, "_").split("");
+
+    palabraConGuionesHtml.innerHTML=palabraConGuiones;
+
+    console.log(palabraConGuiones);
+
+    palabraElegidaLetras = palabraElegida.split("")
+
+    contadorVidasHtml.innetHTML = vidas +"VIDAS";
 })
 
-/* console.log(palabraSecreta); */
 
-/* console.log(palabraSecreta.length); */
+for (const letra of teclas){
+    
+    letra.addEventListener("click", () => {
+                
+        console.log(letra.innerHTML);
 
-const numeroPalabraElegida = Math.floor(Math.random()*palabraSecreta.length)
+        exito=0;
 
-const palabraElegida = palabraSecreta [numeroPalabraElegida]
+        for(let j=0; j< palabraElegida.length; j++){ 
 
-console.log(palabraElegida);
+            if(palabraElegidaLetras[j]===letra.innerHTML.toLowerCase()){
+                palabraConGuiones[j]=letra.innerHTML;
+                palabraConGuionesHtml.innerHTML=palabraConGuiones;
+                contadorPuntuacionHtml.innerHTML = ++contador +"PUNTOS";
+                exito=1;
+            }
+            
+        }
 
-const input = document.querySelector("input")
-
-console.log(input);
-
-const botonEmpezar = document.querySelector("button")
-
-console.log(botonEmpezar);
-
-/* const palabraElegidaLetras = palabraElegida.split("")  */
-
-const palabraConGuiones = palabraElegida.replace(/./g, " _ ");
-
-console.log(palabraConGuiones + " - " + palabraElegida);
-
-for (let i=0; i<palabraElegida.length; i++){
-
-
+        if(exito===0 && vidas >0){
+            contadorVidasHtml.innerHTML = --vidas;
+        } 
+        
+        if(vidas===0){
+            perderVidas()
+        }     
+    }) 
 }
 
 
+function perderPartida(){
+    if (cronometro <= 0){
+        ventanaEmergenteHtml.innerHTML = "¡Tu tiempo se ha terminado! Has perdido "
+    }
+}
 
-/* const palabraElegidaGuiones = palabraElegida.replace("palabraSecreta" , "_")
-console.log(palabraElegidaGuiones); */
-
-/* console.log(palabraElegida+"_"+palabraElegidaGuiones); */ 
+function perderVidas(){
+    if(vidas <= 0){
+        ventanaEmergenteHtml.innerHTML = "¡Fin del juego! Has superado los fallos permitidos"
+    }
+}
