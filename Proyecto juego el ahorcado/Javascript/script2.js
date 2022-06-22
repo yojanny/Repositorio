@@ -14,9 +14,9 @@ let palabraElegidaLetras;
 
 let exito;
 
-let vidas = "6";
+let vidas;
 
-let contador = 0;
+let contador;
 
 let palabraConGuionesHtml = document.querySelector(".guiones")
 
@@ -28,9 +28,11 @@ let cronometroHtml = document.querySelector(".cronometro")
 
 let ventanaEmergenteHtml = document.querySelector(".ventanaEmergente")
 
-const teclas = document.querySelectorAll(".letra")
+let teclas = document.querySelectorAll(".letra")
 
-let cronometro = 59;
+let imagenAhorcadoHtml = document.querySelector("#imagen")
+
+let cronometro;
 
 let interval;
 
@@ -53,6 +55,8 @@ function actualizarSegundos(){
 }
 
 function empezar(){
+    clearInterval(interval)
+    cronometro = 60;
     interval = setInterval(() => {
         cronometro--
         actualizarSegundos()
@@ -62,6 +66,12 @@ function empezar(){
 document.querySelector("#calcular").addEventListener("click", () => {
 
     empezar();
+
+    vidas = 6;
+
+    cambiarImagen();
+
+    contador = 0;
 
     numeroPalabraElegida = Math.floor(Math.random()*palabraSecreta.length) 
 
@@ -77,7 +87,9 @@ document.querySelector("#calcular").addEventListener("click", () => {
 
     palabraElegidaLetras = palabraElegida.split("")
 
-    contadorVidasHtml.innetHTML = vidas +"VIDAS";
+    contadorVidasHtml.innerHTML = vidas +"VIDAS";
+
+    contadorPuntuacionHtml.innerHTML = contador +"PUNTOS"
 })
 
 
@@ -96,12 +108,12 @@ for (const letra of teclas){
                 palabraConGuionesHtml.innerHTML=palabraConGuiones;
                 contadorPuntuacionHtml.innerHTML = ++contador +"PUNTOS";
                 exito=1;
-            }
-            
+            }  
         }
 
         if(exito===0 && vidas >0){
             contadorVidasHtml.innerHTML = --vidas;
+            cambiarImagen();
         } 
         
         if(vidas===0){
@@ -110,15 +122,26 @@ for (const letra of teclas){
     }) 
 }
 
+function cambiarImagen(){
+    
+    const source= `./imagenes_ahorcado/hangman${vidas}.png` 
+    const imagen = imagenAhorcadoHtml;
+    imagen.src = source;
+
+}
 
 function perderPartida(){
     if (cronometro <= 0){
-        ventanaEmergenteHtml.innerHTML = "¡Tu tiempo se ha terminado! Has perdido "
+        ventanaEmergenteHtml.innerHTML = "¡Tu tiempo se ha terminado! Has perdido"
+        /* window.alert("¡Tu tiempo se ha terminado! Has perdido") */
     }
 }
 
 function perderVidas(){
     if(vidas <= 0){
         ventanaEmergenteHtml.innerHTML = "¡Fin del juego! Has superado los fallos permitidos"
+        /* window.alert("¡Fin del juego! Has superado los fallos permitidos") */
+        clearInterval(interval)
     }
 }
+
