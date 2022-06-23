@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:ital,wght@0,100;0,400;0,600;0,700;0,900;1,700&display=swap');
+=======
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:ital,wght@0,100;0,400;0,600;0,700;0,900;1,700&display=swap'); 
+>>>>>>> af2ed281fddf9cb11691d6a2d1cce6725958d9c3
 
 *{
     margin: 0;
@@ -26,8 +30,12 @@ h1{
     margin: 1.5rem;
   
     color: white;
+<<<<<<< HEAD
     font-family: 'Luckiest Guy', cursive;
     
+=======
+    font-family: 'Luckiest Guy', cursive; 
+>>>>>>> af2ed281fddf9cb11691d6a2d1cce6725958d9c3
 }
 
 main{
@@ -77,4 +85,13 @@ ul {
     gap: 2rem;
     font-size: 1rem;
     font-weight: bold;
+}
+
+#fallos{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: red
 }

@@ -16,7 +16,7 @@ let exito;
 
 let vidas;
 
-let contador;
+let puntuacion;
 
 let palabraConGuionesHtml = document.querySelector(".guiones")
 
@@ -32,51 +32,93 @@ let teclas = document.querySelectorAll(".letra")
 
 let imagenAhorcadoHtml = document.querySelector("#imagen")
 
-let cronometro;
+let fallosHtml = document.querySelector("#fallos")
+
+let segundos;
 
 let interval;
 
+let arrayLetrasElegidas = []
+
+let letrasFalladas = "";
+
+const once = {
+    once : true
+};
+
+
 function format(seconds){
+
     if(seconds < 10){
+
         return "0" + seconds;
     }
     return seconds;
 }
 
 function actualizarSegundos(){
-    let segundos = cronometro
 
     cronometroHtml.textContent = `00:${(format(segundos))}`
 
-    if(cronometro===0){
+    if(segundos===0){
+
         clearInterval(interval)
-       
     }
 
-    if (vidas === 0) {
-        perderPartida();
-    }
+    perderPartida();
 }
 
-function empezar(){
+function iniciarTiempo(){
+
     clearInterval(interval)
-    cronometro = 60;
+    segundos = 60;
+    cronometroHtml.textContent = "01:00"
+    
     interval = setInterval(() => {
-        cronometro--
+        segundos--
         actualizarSegundos()
     }, 1000)    
 }
 
-document.querySelector("#calcular").addEventListener("click", () => {
+window.onload = function () {
+    for (const letra of teclas){
 
-    empezar();
+        letra.addEventListener("click", () => pulsarTecla(letra),once)
+    }
+}
+
+function inicializarVariables(){
 
     vidas = 6;
+    puntuacion = 0;
+    cambiarImagen()
 
-    cambiarImagen();
+    fallosHtml.innerHTML = ""
 
-    contador = 0;
+    for (let element of arrayLetrasElegidas)
+    {
+        /* console.log(element); */
+        for (const letra of teclas){
 
+            if(element === letra){
+                /* console.log(element);
+                console.log(letra); */
+                arrayLetrasElegidas.splice(element)
+                letra.addEventListener("click", () => pulsarTecla(letra),once)
+                
+            }
+        }
+        
+    }
+
+}
+
+document.querySelector("#calcular").addEventListener("click", () => {
+
+    iniciarTiempo();
+
+    inicializarVariables()
+    
     numeroPalabraElegida = Math.floor(Math.random()*palabraSecreta.length) 
 
     palabraElegida = palabraSecreta [numeroPalabraElegida]
@@ -91,61 +133,113 @@ document.querySelector("#calcular").addEventListener("click", () => {
 
     palabraElegidaLetras = palabraElegida.split("")
 
-    contadorVidasHtml.innerHTML = vidas +"VIDAS";
+    ventanaEmergenteHtml.innerHTML =""
+    
+    contadorVidasHtml.innerHTML = vidas +" VIDAS";
 
-    contadorPuntuacionHtml.innerHTML = contador +"PUNTOS"
+    contadorPuntuacionHtml.innerHTML = puntuacion +" PUNTOS"
+
+    /* for (const letra of teclas){
+    
+        letra.addEventListener("click", () => pulsarTecla(letra),once)  
+    } */
 })
 
+function pulsarTecla(letra){
 
-for (const letra of teclas){
+    console.log(letra.innerHTML);
+
+    exito=comprobarLetra(letra)
+
+    if(!exito){
+        /* letrasFalladas += ` ${letra.innerHTML} ` */
+        /* console.log(letrasFalladas); */
+        fallosHtml.innerHTML += ` ${letra.innerHTML} `
+    }
+
+    actualizarVariables(exito)
+}
+
+function comprobarLetra(letra){
+
+    arrayLetrasElegidas.push(letra);
+
+    let acierto = false;
+
+    let letraElegida = letra.innerHTML;
+
+
+    for(let j=0; j< palabraElegida.length; j++){ 
+
+        if (palabraElegidaLetras[j]===letraElegida.toLowerCase()){
+            palabraConGuiones[j]=letraElegida;
+            puntuacion++;
+            acierto = true;
+        }  
+    }
+    return acierto;
+}
+
+/* function fallarLetras(){
+
+} */
+
+function actualizarVariables(exito){
+
+    if(exito){
+        palabraConGuionesHtml.innerHTML=palabraConGuiones;
+        contadorPuntuacionHtml.innerHTML = `${puntuacion} PUNTOS`
+    }
+
+    if(!exito && vidas >0 && puntuacion!=palabraElegida.length){
+        vidas--;
+        contadorVidasHtml.innerHTML = `${vidas} VIDAS`;
+        cambiarImagen();
+    }
     
-    letra.addEventListener("click", () => {
-                
-        console.log(letra.innerHTML);
+    else if (puntuacion===palabraElegida.length){
+        ganarPartida()
+    }
+    
+    if(vidas===0){
+        perderVidas()
+    }  
 
-        exito=0;
-
-        for(let j=0; j< palabraElegida.length; j++){ 
-
-            if(palabraElegidaLetras[j]===letra.innerHTML.toLowerCase()){
-                palabraConGuiones[j]=letra.innerHTML;
-                palabraConGuionesHtml.innerHTML=palabraConGuiones;
-                contadorPuntuacionHtml.innerHTML = ++contador +"PUNTOS";
-                exito=1;
-            }  
-        }
-
-        if(exito===0 && vidas >0){
-            contadorVidasHtml.innerHTML = --vidas;
-            cambiarImagen();
-        } 
-        
-        if(vidas===0){
-            perderVidas()
-        }     
-    }) 
 }
 
 function cambiarImagen(){
     
-    const source= `./imagenes_ahorcado/hangman${vidas}.png` 
-    const imagen = imagenAhorcadoHtml;
-    imagen.src = source;
+    imagenAhorcadoHtml.src = `./imagenes_ahorcado/hangman${vidas}.png`;
 
 }
 
 function perderPartida(){
+<<<<<<< HEAD
     if (cronometro <= 0){
         ventanaEmergenteHtml.innerHTML = "¡Tu tiempo se ha terminado! Has perdido"
         /* window.alert("¡Tu tiempo se ha terminado! Has perdido")  */
+=======
+    if (segundos <= 0){
+        ventanaEmergenteHtml.innerHTML = `¡Tu tiempo se ha terminado! Has perdido. La palabra correcta era ${palabraElegida}`
+        /* window.alert("¡Tu tiempo se ha terminado! Has perdido") */
+>>>>>>> af2ed281fddf9cb11691d6a2d1cce6725958d9c3
     }
 }
 
 function perderVidas(){
     if(vidas <= 0){
+<<<<<<< HEAD
         ventanaEmergenteHtml.innerHTML = "¡Fin del juego! Has superado los fallos permitidos"
         /* window.alert("¡Fin del juego! Has superado los fallos permitidos"); */
+=======
+        ventanaEmergenteHtml.innerHTML = `¡Fin del juego! Has superado los fallos permitidos. La palabra correcta era ${palabraElegida}`
+        /* window.alert("¡Fin del juego! Has superado los fallos permitidos") */
+>>>>>>> af2ed281fddf9cb11691d6a2d1cce6725958d9c3
         clearInterval(interval)
     }
 }
 
+function ganarPartida(){
+    ventanaEmergenteHtml.innerHTML = "¡Felicidades! !Has ganado la partida!"
+        clearInterval(interval)
+}
