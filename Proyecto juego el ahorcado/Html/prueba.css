@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:ital,wght@0,100;0,400;0,600;0,700;0,900;1,700&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -9,20 +11,23 @@ body{
     margin: 0;
     background: url(/Css/IMG-20220622-WA0001.jpg);
     background-size: cover;
-    font-family: 'carter one', Arial, Helvetica, sans-serif;
+    
 }
 
 header{
     background: black;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
     margin-bottom: 10px;
     font-size: 2rem;
 }
 
 h1{
-    margin: 0;
+    margin: 1.5rem;
+  
     color: white;
+    font-family: 'Luckiest Guy', cursive;
+    
 }
 
 main{

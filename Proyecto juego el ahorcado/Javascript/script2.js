@@ -137,14 +137,14 @@ function cambiarImagen(){
 function perderPartida(){
     if (cronometro <= 0){
         ventanaEmergenteHtml.innerHTML = "¡Tu tiempo se ha terminado! Has perdido"
-        window.alert("¡Tu tiempo se ha terminado! Has perdido") 
+        /* window.alert("¡Tu tiempo se ha terminado! Has perdido")  */
     }
 }
 
 function perderVidas(){
     if(vidas <= 0){
         ventanaEmergenteHtml.innerHTML = "¡Fin del juego! Has superado los fallos permitidos"
-        window.alert("¡Fin del juego! Has superado los fallos permitidos");
+        /* window.alert("¡Fin del juego! Has superado los fallos permitidos"); */
         clearInterval(interval)
     }
 }
