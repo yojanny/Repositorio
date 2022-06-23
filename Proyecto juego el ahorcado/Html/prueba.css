@@ -1,0 +1,75 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+body{
+    margin: 0;
+    background: url(/Css/IMG-20220622-WA0001.jpg);
+    background-size: cover;
+    font-family: 'carter one', Arial, Helvetica, sans-serif;
+}
+
+header{
+    background: black;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 2rem;
+}
+
+h1{
+    margin: 0;
+    color: white;
+}
+
+main{
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, .7)
+}
+
+li{
+    /* height: 10rem;
+    width: 10rem; */
+    list-style-type: none;
+}
+
+ol{
+    height: 10rem;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+}
+
+.letra{
+    height: 5rem;
+    width: 5rem;
+}
+
+#calcular{
+    height: 5rem;
+    width: 5rem;
+    bottom: 0;
+    background-color: red;
+}
+
+img.imagen{
+    width: 10rem;
+    display: flex;
+}
+
+ul {
+    margin: 1rem;
+    display: flex;
+    justify-content:space-between;
+    gap: 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+}
