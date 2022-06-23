@@ -76,3 +76,12 @@ ul {
     font-size: 1rem;
     font-weight: bold;
 }
+
+#fallos{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: red
+}

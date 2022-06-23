@@ -32,11 +32,15 @@ let teclas = document.querySelectorAll(".letra")
 
 let imagenAhorcadoHtml = document.querySelector("#imagen")
 
+let fallosHtml = document.querySelector("#fallos")
+
 let segundos;
 
 let interval;
 
 let arrayLetrasElegidas = []
+
+let letrasFalladas = "";
 
 const once = {
     once : true
@@ -88,6 +92,8 @@ function inicializarVariables(){
     vidas = 6;
     puntuacion = 0;
     cambiarImagen()
+
+    fallosHtml.innerHTML = ""
 
     for (let element of arrayLetrasElegidas)
     {
@@ -145,6 +151,12 @@ function pulsarTecla(letra){
 
     exito=comprobarLetra(letra)
 
+    if(!exito){
+        /* letrasFalladas += ` ${letra.innerHTML} ` */
+        /* console.log(letrasFalladas); */
+        fallosHtml.innerHTML += ` ${letra.innerHTML} `
+    }
+
     actualizarVariables(exito)
 }
 
@@ -167,6 +179,10 @@ function comprobarLetra(letra){
     }
     return acierto;
 }
+
+/* function fallarLetras(){
+
+} */
 
 function actualizarVariables(exito){
 
@@ -199,14 +215,14 @@ function cambiarImagen(){
 
 function perderPartida(){
     if (segundos <= 0){
-        ventanaEmergenteHtml.innerHTML = "¡Tu tiempo se ha terminado! Has perdido"
+        ventanaEmergenteHtml.innerHTML = `¡Tu tiempo se ha terminado! Has perdido. La palabra correcta era ${palabraElegida}`
         /* window.alert("¡Tu tiempo se ha terminado! Has perdido") */
     }
 }
 
 function perderVidas(){
     if(vidas <= 0){
-        ventanaEmergenteHtml.innerHTML = "¡Fin del juego! Has superado los fallos permitidos"
+        ventanaEmergenteHtml.innerHTML = `¡Fin del juego! Has superado los fallos permitidos. La palabra correcta era ${palabraElegida}`
         /* window.alert("¡Fin del juego! Has superado los fallos permitidos") */
         clearInterval(interval)
     }
