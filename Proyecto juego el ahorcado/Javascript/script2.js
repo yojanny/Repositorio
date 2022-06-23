@@ -214,27 +214,18 @@ function cambiarImagen(){
 }
 
 function perderPartida(){
-<<<<<<< HEAD
-    if (cronometro <= 0){
-        ventanaEmergenteHtml.innerHTML = "¡Tu tiempo se ha terminado! Has perdido"
-        /* window.alert("¡Tu tiempo se ha terminado! Has perdido")  */
-=======
+
     if (segundos <= 0){
         ventanaEmergenteHtml.innerHTML = `¡Tu tiempo se ha terminado! Has perdido. La palabra correcta era ${palabraElegida}`
         /* window.alert("¡Tu tiempo se ha terminado! Has perdido") */
->>>>>>> af2ed281fddf9cb11691d6a2d1cce6725958d9c3
     }
 }
 
 function perderVidas(){
     if(vidas <= 0){
-<<<<<<< HEAD
-        ventanaEmergenteHtml.innerHTML = "¡Fin del juego! Has superado los fallos permitidos"
-        /* window.alert("¡Fin del juego! Has superado los fallos permitidos"); */
-=======
+
         ventanaEmergenteHtml.innerHTML = `¡Fin del juego! Has superado los fallos permitidos. La palabra correcta era ${palabraElegida}`
         /* window.alert("¡Fin del juego! Has superado los fallos permitidos") */
->>>>>>> af2ed281fddf9cb11691d6a2d1cce6725958d9c3
         clearInterval(interval)
     }
 }
