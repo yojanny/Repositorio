@@ -82,10 +82,13 @@ ul {
 }
 
 #fallos{
+    margin: 2rem;
     display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    font-size: 1rem;
+    justify-content: flex-end;
+    align-content: center;
+    gap: 2rem;
+    font-size: 3rem;
     font-weight: bold;
     color: red
+    
 }
