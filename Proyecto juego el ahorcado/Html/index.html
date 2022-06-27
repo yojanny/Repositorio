@@ -5,18 +5,77 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juego de el ahorcado</title>
-    <link rel="stylesheet" href="/Css/style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:ital,wght@0,100;0,400;0,600;0,700;0,900;1,700&display=swap" rel="stylesheet">
+    
 </head>
 <body>
+    <header>
+        <h1>El AHORCADO</h1>
     
-    <h1>El AHORCADO</h1>
+    </header>
+    
+    <main>
+    <section id="grupo1">
+        <figure>
+        <img id="imagen" src="./imagenes_ahorcado/hangman6.png" alt="ahorcado">
+        
+        <figcaption class="ventanaEmergente"></figcaption>
+    </figure>
 
+        <p id="fallos"></p>
+  
+        <ul>
+            <li><div class="guiones"></div></li>
+            <li><div class="vidas">6 VIDAS</div></li>
+            <li><div class="contador">0  PUNTOS </div></li>
+            <li><div class="cronometro">01:00</div></li>
+            
+        </ul>
 
+    </section>
 
-    <input type="text"><button>Empezar</button>
+    <section> 
 
+        <ol>
+            <li><button class = "letra">A</button></li>
+            <li><button class = "letra">B</button></li>
+            <li><button class = "letra">C</button></li>
+            <li><button class = "letra">D</button></li>
+            <li><button class = "letra">E</button></li>
+            <li><button class = "letra">F</button></li>
+            <li><button class = "letra">G</button></li>
+            <li><button class = "letra">H</button></li>
+            <li><button class = "letra">I</button></li>
+            <li><button class = "letra">J</button></li>
+            <li><button class = "letra">K</button></li>
+            <li><button class = "letra">L</button></li>
+            <li><button class = "letra">M</button></li>
+            <li><button class = "letra">N</button></li>
+            <li><button class = "letra">O</button></li>
+            <li><button class = "letra">P</button></li>
+            <li><button class = "letra">Q</button></li>
+            <li><button class = "letra">R</button></li>
+            <li><button class = "letra">S</button></li>
+            <li><button class = "letra">T</button></li>
+            <li><button class = "letra">U</button></li>
+            <li><button class = "letra">V</button></li>
+            <li><button class = "letra">W</button></li>
+            <li><button class = "letra">X</button></li>
+            <li><button class = "letra">Y</button></li>
+            <li><button class = "letra">Z</button></li>
+            <li><button id="calcular">Empezar</button></li>
+        </ol>
 
-    <script src="/Javascript/script.js"></script>
+    </section>
 
+        <!-- <input type="text" maxlength="1">
+        <button type="submit">Enviar</button> -->
+        
+
+        <script src="/Javascript/script.js"></script>
+    </main>
 </body>
 </html>
