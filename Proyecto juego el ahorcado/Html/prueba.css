@@ -79,6 +79,7 @@ ul {
     gap: 2rem;
     font-size: 1rem;
     font-weight: bold;
+    width: 100%;
 }
 
 #fallos{
@@ -91,4 +92,17 @@ ul {
     font-weight: bold;
     color: red
     
+}
+
+section#grupo1{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+section#grupo1 .guiones{
+    font-size: 2rem;
+    display: flex;
+    
+    flex-wrap: wrap;
+    justify-content: center;
 }
